@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="/static/echarts.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">STATISTIQUE DE LA POPULATION DE C.I</h1>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="text-center">Diagramme de la population de C.I</h3>
+                <hr>
+                <div id="main" style="width:100%; height:400px;"></div>
+            </div>
+
+            <div class="col-md-6">
+                <h3 class="text-center">Tableau récapitulatif</h3>
+                <hr>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                        <th scope="col">Max</th>
+                        <th scope="col">Dioula</th>
+                        <th scope="col">3000</th>
+                        <th scope="col">Soit 30%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">Min</th>
+                        <td>Lobi</td>
+                        <td>500</td>
+                        <td>Soit 5%</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Moyenne</th>
+                        <td class="text-center" colspan="3">2500</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+
+        var option = {
+            color: ['#3398DB'],
+            title: {
+                text: 'ECharts entry example'
+            },
+            tooltip: {},
+            legend: {
+                data:['Sales']
+            },
+            xAxis: {
+                data: ["shirt","cardign","chiffon shirt","pants","heels","socks"]
+            },
+            yAxis: {},
+            series: [{
+                name: 'Sales',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

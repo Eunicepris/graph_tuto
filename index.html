@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="echarts.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Echarts</h1>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- preparing a DOM with width and height for ECharts -->
+                <div id="main" style="width:100%; height:400px;"></div>
+            </div>
+            <div class="col-md-6">
+                <!-- preparing a DOM with width and height for ECharts -->
+                <div id="mainlang" style="width:100%; height:400px;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- preparing a DOM with width and height for ECharts -->
+                <div id="maingauge" style="width:100%; height:400px;"></div>
+            </div>
+        </div>
+        
+    </div>
+    <script type="text/javascript">
+        // based on prepared DOM, initialize echarts instance
+        var myChart = echarts.init(document.getElementById('main'));
+        var myPieLang = echarts.init(document.getElementById('mainlang'));
+        var myGauge = echarts.init(document.getElementById('maingauge'));
+
+        // specify chart configuration item and data
+        var option = {
+            title: {
+                text: 'ECharts entry example'
+            },
+            tooltip: {},
+            legend: {
+                data:['Sales']
+            },
+            xAxis: {
+                data: ["shirt","cardign","chiffon shirt","pants","heels","socks"]
+            },
+            yAxis: {},
+            series: [{
+                name: 'Sales',
+                type: 'line',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        //option lang
+
+        var optionLang = {
+            title : {
+                text: 'Populaion',
+                subtext: 'CI',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['Autre','Bété','Dioula','Baoulé','Lobi']
+            },
+            series : [
+                {
+                    name: 'Population',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:25, name:'Autre'},
+                        {value:10, name:'Bété'},
+                        {value:30, name:'Dioula'},
+                        {value:30, name:'Baoulé'},
+                        {value:5, name:'Lobi'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // gauge
+        var optionGauge = {
+            title : {
+                text: 'Gauge',
+                subtext: 'Candidat',
+                x:'center'
+            },
+            tooltip : {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            toolbox: {
+                feature: {
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            series: [
+                {
+                    name: 'Candidat en ligne',
+                    type: 'gauge',
+                    detail: {formatter:'{value}%'},
+                    data: [{value: 50, name: 'Candidat en ligne'}]
+                }
+            ]
+        };
+
+        setInterval(function () {
+            optionGauge.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+            myGauge.setOption(optionGauge, true);
+        },2000);
+
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+        myPieLang.setOption(optionLang);
+        
+    </script>
+
+</body>
+</html>
